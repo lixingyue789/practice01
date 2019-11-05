@@ -1,8 +1,7 @@
 package com.yue1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.DecimalFormat;
+import java.util.*;
 
 /**
  * Author:lxy1999
@@ -46,9 +45,8 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        int[] num = {-1,1,-1,2,0,3,-3,-2,3};
+        int[] num = {-1, 1, -1, 2, 0, 3, -3, -2, 3};
         List<List<Integer>> result = threeCountSum(num);
         System.out.println(result);
-
     }
 }
