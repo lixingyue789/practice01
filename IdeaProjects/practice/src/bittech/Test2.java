@@ -19,7 +19,7 @@ class Person implements Comparable<Person>{
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Teacher{" +
                 "name='" + name + '\'' +
                 '}';
     }
@@ -62,8 +62,8 @@ public class Test2 {
         //Person类的hashCode方法是继承于Object类中的方法，Object有独有的方式来计算hashCode
         //三个对象的hashCode值不一样，所以不是重复
         //综上所述：如果想要使三个对象重复，可以通过覆写equals与hashCode方法
-//        TreeSet<Person> set = new TreeSet<>();
-//        set.add(new Person("张三"));
+//        TreeSet<Teacher> set = new TreeSet<>();
+//        set.add(new Teacher("张三"));
 //        System.out.println(set);
     }
 }
