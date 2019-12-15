@@ -1,0 +1,84 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.ming.mapper.IUserInfo">
+
+
+
+    <update id="updateUserInfo" parameterType="com.ming.po.UserInfo">
+        update userinfo set username=#{username} where userid=#{userid}
+    </update>
+
+    <delete id="delUserInfo" parameterType="int">
+        delete from userinfo where userid=#{myid}
+    </delete>
+
+    <select id="queryByUserinfoFromMultiCondition" parameterType="com.ming.BZ.UserInfoBZ" resultType="com.ming.po.UserInfoEx">
+        select * from userinfo where userid = #{userInfoEx.userid} and username like '%${userInfoEx.userName}%';
+    </select>
+
+    <!--<select id="queryUserInfoByCondition" parameterType="com.ming.BZ.UserInfoBZ" resultType="int">-->
+        <!--select count(*) from userinfo where username like '%${userInfoEx.username}%' and usersex = #{userInfoEx.usersex};-->
+    <!--</select>-->
+
+
+    <sql id="mysql">
+        <if test="userInfoEx != null">
+            <if test="userInfoEx.username != null">
+                and username like '%${userInfoEx.username}%'
+            </if>
+            <if test="userInfoEx.usersex != null">
+                and usersex = #{userInfoEx.usersex}
+            </if>
+        </if>
+    </sql>
+
+    <select id="queryUserInfoByCondition" parameterType="com.ming.BZ.UserInfoBZ" resultType="int">
+        select count(*) from userinfo
+
+        <where>
+            <include refid="mysql"/>
+        </where>
+
+    </select>
+
+    <resultMap id="myResult" type="com.ming.po.UserInfoEx">
+        <id column="myid" property="userid"/>
+        <id column="myname" property="username"/>
+        <id column="mysex" property="usersex"/>
+    </resultMap>
+
+    <select id="queryUserInfo" parameterType="com.ming.BZ.UserInfoBZ" resultMap="myResult">
+        select userid as myid, username as myname, usersex as mysex from userinfo
+        where userid=#{userInfoEx.userid}
+        and username like '%${userInfoEx.username}%' and usersex=#{userInfoEx.usersex};
+    </select>
+
+    <select id="queryUserInfo2" parameterType="com.ming.BZ.UserInfoBZ" resultMap="myResult">
+        select userid as myid, username as myname, usersex as mysex from userinfo
+        where username like '%${userInfoEx.username}%' and usersex=#{userInfoEx.usersex};
+    </select>
+    
+    <!--<select id="loopTest" parameterType="com.ming.BZ.UserInfoBZ" resultType="com.ming.po.UserInfo">-->
+        <!--select * from userinfo-->
+        <!--<where>-->
+            <!--<foreach collection="multyIds" item="everyId"-->
+                     <!--open="(" close=")" separator="or">-->
+                <!--userid = #{everyId}-->
+            <!--</foreach>-->
+        <!--</where>-->
+    <!--</select>-->
+    <select id="loopTest" parameterType="com.ming.BZ.UserInfoBZ" resultType="com.ming.po.UserInfo">
+        select * from userinfo
+        <where>
+            <foreach collection="multyIds" item="everyId"
+                     open="userid in(" close=")" separator=",">
+                #{everyId}
+            </foreach>
+        </where>
+    </select>
+
+</mapper>
