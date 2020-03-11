@@ -119,7 +119,7 @@ public class Solution3 {
         while (true) {
             int left = 2 * index + 1;
             if (left >= size) {
-                return;
+                break;
             }
             int max = left;
             int right = left + 1;
