@@ -1,4 +1,4 @@
-package 练习;
+package 练习1;
 
 import java.util.*;
 
