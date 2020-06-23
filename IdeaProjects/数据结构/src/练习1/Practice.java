@@ -1,11 +1,11 @@
 package 练习1;
 
-import java.util.Scanner;
 
 /**
  * Author:lxy1999
  * Created:2020/3/5
  */
+import java.util.Scanner;
 public class Practice {
     //加密：密文（大写）
     public String Encryption(String line){
@@ -29,26 +29,26 @@ public class Practice {
         return result;
     }
     //解密：明文（小写）
-    public String Decryption(String line){
-        String s = line.toLowerCase();
-        String result = "";
-        for(int i = 0;i<s.length();i++){
-            char ch = s.charAt(i);
-            if(ch>='d' && ch<='z'){
-                char c = (char) (ch-3);
-                result = result.concat(String.valueOf(c));
-            }else {
-                if(ch == 'a'){
-                    result = result.concat(String.valueOf('x'));
-                }else if(ch == 'b'){
-                    result = result.concat(String.valueOf('y'));
-                }else {
-                    result = result.concat(String.valueOf('z'));
-                }
-            }
-        }
-        return result;
-    }
+//    public String Decryption(String line){
+//        String s = line.toLowerCase();
+//        String result = "";
+//        for(int i = 0;i<s.length();i++){
+//            char ch = s.charAt(i);
+//            if(ch>='d' && ch<='z'){
+//                char c = (char) (ch-3);
+//                result = result.concat(String.valueOf(c));
+//            }else {
+//                if(ch == 'a'){
+//                    result = result.concat(String.valueOf('x'));
+//                }else if(ch == 'b'){
+//                    result = result.concat(String.valueOf('y'));
+//                }else {
+//                    result = result.concat(String.valueOf('z'));
+//                }
+//            }
+//        }
+//        return result;
+//    }
     public static void main(String[] args) {
         System.out.println("请输入字符串：");
         Scanner scanner = new Scanner(System.in);
@@ -57,8 +57,9 @@ public class Practice {
         String a = p.Encryption(line);
         System.out.println("加密后的密文为：");
         System.out.println(a);
-        String b = p.Decryption(a);
-        System.out.println("将密文解密后的明文：");
-        System.out.println(b);
+//        String b = p.Decryption(line);
+//        System.out.println("将密文解密后的明文：");
+//        System.out.println(b);
     }
 }
+//abcdefghijklmnopqrstuvwxyz
